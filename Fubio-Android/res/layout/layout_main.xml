@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
     android:background="@drawable/bg"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true" 
-    
-    >
+    android:gravity="bottom|center_vertical"
+    android:orientation="vertical" >
 	
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
