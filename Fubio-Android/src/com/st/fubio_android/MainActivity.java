@@ -8,10 +8,15 @@ import android.widget.ListView;
 import com.facebook.Session;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-////////////////////////////////////////////////////////////////////
-//Must include jfeinstein's sliding menu lib and Facebook SDK 3.14//
-////////////////////////////////////////////////////////////////////
 
+
+/**
+ * Must import Jfeninstein's sliding menu and Facebook SDK 3.14.1.
+ * 
+ * Sliding menu: https://github.com/jfeinstein10/SlidingMenu
+ * Facebook SDK: https://github.com/facebook/facebook-android-sdk
+ * @author ynizipli
+ */
 public class MainActivity extends FragmentActivity {
 	//Private variables and arrays for sliding menu.
 	private ListView lv;
@@ -52,6 +57,4 @@ public class MainActivity extends FragmentActivity {
             mainFragment = (FB_Login) getSupportFragmentManager().findFragmentById(android.R.id.content);
         }
     }
-
-
 }
