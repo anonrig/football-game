@@ -68,7 +68,6 @@ public class FB_Login extends Fragment {
 	                }
 				}
 	        });
-	        
 	        getFacebookInformation.executeAsync();
 	        
 	    	Toast.makeText(getActivity(), "Logged in.", 5).show();
@@ -77,8 +76,6 @@ public class FB_Login extends Fragment {
 	    
 	    Toast.makeText(getActivity(), "Logged out.", 5).show();
 	}
-	
-	
 	
 	
 	@Override
