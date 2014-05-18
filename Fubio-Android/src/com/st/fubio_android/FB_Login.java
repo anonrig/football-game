@@ -1,6 +1,10 @@
 package com.st.fubio_android;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,9 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.facebook.Request;
+import com.facebook.Request.GraphUserCallback;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 
 
@@ -33,20 +41,44 @@ public class FB_Login extends Fragment {
 
 	    LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
 	    authButton.setFragment(this);
-	    //authButton.setReadPermissions(Arrays.asList("user_likes", "user_status"));
+	    authButton.setReadPermissions(Arrays.asList("user_likes", "user_status", "user_email"));
 	    
 	    return view;
 	}
 	
 	
-	private void onSessionStateChange(Session session, SessionState state, Exception exception) { //On state changes logs the info.
+	private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
 	    if (session.isOpened()) {
-	    	Toast.makeText(getActivity(), "Logged in...", 5).show();
+	        Request getFacebookInformation = Request.newMeRequest(session, new GraphUserCallback() {
+				@Override
+				public void onCompleted(GraphUser user, Response response) {
+					if (user != null) {
+	                    String userId = user.getId(),
+	                    		accessToken = session.getAccessToken(),
+	                    		name = user.getName(),
+	                    		email = (String) user.asMap().get("email");
+	                    
+	                    Toast.makeText(getActivity(), "Successfully gathered Facebook information.", 5).show();
+
+	                    HashMap<String, String> data = new HashMap<String, String>();
+	                    data.put("facebookId", userId);
+	                    data.put("accessToken", accessToken);
+	                    data.put("email", email);
+	                    data.put("name", name);
+	                }
+				}
+	        });
+	        
+	        getFacebookInformation.executeAsync();
+	        
+	    	Toast.makeText(getActivity(), "Logged in.", 5).show();
 	    	return;
 	    } 
 	    
-	    Toast.makeText(getActivity(), "Logged out...", 5).show();
+	    Toast.makeText(getActivity(), "Logged out.", 5).show();
 	}
+	
+	
 	
 	
 	@Override

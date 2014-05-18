@@ -2,10 +2,8 @@ package com.st.fubio_android;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.facebook.Session;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
