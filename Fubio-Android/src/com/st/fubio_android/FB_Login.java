@@ -75,7 +75,7 @@ public class FB_Login extends Fragment {
 	                    		email = (String) user.asMap().get("email");
 	                    
 	                    Toast.makeText(getActivity(), "Successfully gathered Facebook information.", 5).show();
-
+	                    
 	                    HashMap<String, String> data = new HashMap<String, String>();
 	                    data.put("facebookId", userId);
 	                    data.put("accessToken", accessToken);

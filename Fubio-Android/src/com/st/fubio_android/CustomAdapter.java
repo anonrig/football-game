@@ -11,26 +11,26 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 
-public class CustomAdapter extends BaseAdapter{
-    String [] menuItem;
-    String [] subMenuItem;
+public class CustomAdapter extends BaseAdapter {
+    static String [] menuItem;
+    static String [] subMenuItem;
     Context context;
 	int [] imageId;
  	private static LayoutInflater inflater=null;
  	
  	
     public CustomAdapter(MainActivity mainActivity, String[] itemList, String[] subItem, int[] itemIcon) {
-        // TODO Auto-generated constructor stub
         menuItem=itemList;
         subMenuItem = subItem;
         context=mainActivity;
         imageId=itemIcon;
-         inflater = ( LayoutInflater )context.
+        inflater = ( LayoutInflater )context.
                  getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     
@@ -75,7 +75,7 @@ public class CustomAdapter extends BaseAdapter{
     public long getItemId(int position) {
         return position;
     }
- 
+    
     
     public class Holder {
         TextView mainItem, subItem;
@@ -99,7 +99,7 @@ public class CustomAdapter extends BaseAdapter{
         rowView.setOnClickListener(new OnClickListener() {        
 			@Override
 			public void onClick(View v) {
-			Toast.makeText(context, "You Clicked "+menuItem[position], Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "You Clicked "+menuItem[position], Toast.LENGTH_LONG).show();
 			}
         }); 
         
