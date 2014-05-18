@@ -14,8 +14,9 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
 
-public class FB_Login extends Fragment {
 
+
+public class FB_Login extends Fragment {
 	private static final String TAG = "FBLogin";
 	private UiLifecycleHelper uiHelper;
 	private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -37,14 +38,16 @@ public class FB_Login extends Fragment {
 	    return view;
 	}
 	
+	
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) { //On state changes logs the info.
 	    if (session.isOpened()) {
 	    	Toast.makeText(getActivity(), "Logged in...", 5).show();
+	    	return;
 	    } 
-	    else if (session.isClosed()) {
-	    	Toast.makeText(getActivity(), "Logged out...", 5).show();
-	    }
+	    
+	    Toast.makeText(getActivity(), "Logged out...", 5).show();
 	}
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) { //UI lifecycle helper manages facebook session on pause,resume,destroy.
@@ -53,34 +56,38 @@ public class FB_Login extends Fragment {
 	    uiHelper.onCreate(savedInstanceState);
 	}
 	
+	
 	@Override
 	public void onResume() {
 	    super.onResume();
 	    uiHelper.onResume();
 	}
 
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    super.onActivityResult(requestCode, resultCode, data);
 	    uiHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
+	
 	@Override
 	public void onPause() {
 	    super.onPause();
 	    uiHelper.onPause();
 	}
 
+	
 	@Override
 	public void onDestroy() {
 	    super.onDestroy();
 	    uiHelper.onDestroy();
 	}
 
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
 	    uiHelper.onSaveInstanceState(outState);
 	}
-	
 }
