@@ -1,8 +1,24 @@
 package com.st.fubio_android;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import android.R.integer;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -65,6 +81,9 @@ public class FB_Login extends Fragment {
 	                    data.put("accessToken", accessToken);
 	                    data.put("email", email);
 	                    data.put("name", name);
+	                    
+	                    ServerRequest request = new ServerRequest("http://api.fub.io/register", data);
+	                    request.execute();
 	                }
 				}
 	        });
@@ -77,6 +96,48 @@ public class FB_Login extends Fragment {
 	    Toast.makeText(getActivity(), "Logged out.", 5).show();
 	}
 	
+	private class ServerRequest extends AsyncTask<String, String, String> {
+		private String requestUrl = null;
+		private HashMap<String, String> requestParams = null;
+		
+		
+		public ServerRequest(String URL, HashMap<String, String> data) {
+			requestParams = data;
+			requestUrl = URL;
+		}
+		
+		
+		@Override
+		protected String doInBackground(String... params) {
+			HttpClient client = new DefaultHttpClient();
+			HttpPost post = new HttpPost(requestUrl);
+			HttpResponse response = null;
+			ArrayList<NameValuePair> nameValuePair = new ArrayList<NameValuePair>();
+			Iterator<String> it = requestParams.keySet().iterator();
+			
+			while (it.hasNext()) {
+				String key = it.next();
+				nameValuePair.add(new BasicNameValuePair(key, requestParams.get(key)));
+			}
+			
+			try {
+				post.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
+				response = client.execute(post);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return String.valueOf(response.getStatusLine().getStatusCode());
+		}
+		
+		
+		@Override
+		protected void onPostExecute(String responseCode) {
+			if (Integer.parseInt(responseCode) == 500) {
+				Toast.makeText(getActivity(), "Failed to connect to Fubio server.", 5).show();
+			} 
+		}	
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) { //UI lifecycle helper manages facebook session on pause,resume,destroy.
