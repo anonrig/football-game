@@ -74,15 +74,12 @@ public class FB_Login extends Fragment {
 	                    		name = user.getName(),
 	                    		email = (String) user.asMap().get("email");
 	                    
-	                    Toast.makeText(getActivity(), "Successfully gathered Facebook information.", 5).show();
+	                    Toast.makeText(getActivity(), "Successful.", 5).show();
 	                    
 	                    HashMap<String, String> data = new HashMap<String, String>();
-	                    data.put("facebookId", userId);
 	                    data.put("accessToken", accessToken);
-	                    data.put("email", email);
-	                    data.put("name", name);
 	                    
-	                    ServerRequest request = new ServerRequest("http://api.fub.io/register", data);
+	                    ServerRequest request = new ServerRequest("http://api.fub.io/loginWithFBAC", data);
 	                    request.execute();
 	                }
 				}
@@ -133,7 +130,9 @@ public class FB_Login extends Fragment {
 		
 		@Override
 		protected void onPostExecute(String responseCode) {
-			if (Integer.parseInt(responseCode) == 500) {
+			int res = Integer.parseInt(responseCode);
+			
+			if (res == 500 || res == 401) {
 				Toast.makeText(getActivity(), "Failed to connect to Fubio server.", 5).show();
 			} 
 		}	
