@@ -3,6 +3,7 @@ package com.st.fubio_android;
 
 import java.util.Arrays;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -54,9 +55,14 @@ public class FB_Login extends Fragment {
             params.put("access_token", accessToken);
             
             manager.get("loginWithFBAC", params, new AsyncHttpResponseHandler() {
+            	ProgressDialog progress = new ProgressDialog(getActivity());
+            	
             	@Override
 				public void onStart() {
 					Log.v(TAG , "onStart");
+					progress.setTitle("Loading");
+					progress.setMessage("Thank you for your patience.");
+					progress.show();
 				}
 
             	
@@ -77,6 +83,7 @@ public class FB_Login extends Fragment {
 				
 				@Override
 				public void onFinish() {
+					progress.dismiss();
 					Log.v(TAG , "onFinish");
 				}
             });
