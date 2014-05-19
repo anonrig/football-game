@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.ListView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.st.fubio_android.Music.MusicService;
 
 
 
@@ -28,6 +29,21 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Thread thread = new Thread()
+        {
+            @Override
+            public void run() {
+                MusicService mp = new MusicService(getApplicationContext());
+                while(true) {
+                	mp.play();
+                }
+				
+            }
+        };
+
+        thread.start();
+        
         setTitle(R.string.app_title);
         setContentView(R.layout.layout_main);
 
