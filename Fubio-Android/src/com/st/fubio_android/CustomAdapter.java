@@ -1,6 +1,7 @@
 package com.st.fubio_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -99,11 +100,10 @@ public class CustomAdapter extends BaseAdapter {
         rowView.setOnClickListener(new OnClickListener() {        
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "You Clicked "+menuItem[position], Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "You Clicked " + menuItem[position], Toast.LENGTH_LONG).show();
 			}
         }); 
         
         return rowView;
     }
- 
 }
