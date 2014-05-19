@@ -1,26 +1,9 @@
 package com.st.fubio_android;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-
-import android.R.integer;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -29,14 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.facebook.Request;
-import com.facebook.Request.GraphUserCallback;
-import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.st.fubio_android.ServerConnections.RequestManager;
 
 
 
@@ -65,26 +47,39 @@ public class FB_Login extends Fragment {
 	
 	private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
 	    if (session.isOpened()) {
-	        Request getFacebookInformation = Request.newMeRequest(session, new GraphUserCallback() {
-				@Override
-				public void onCompleted(GraphUser user, Response response) {
-					if (user != null) {
-	                    String userId = user.getId(),
-	                    		accessToken = session.getAccessToken(),
-	                    		name = user.getName(),
-	                    		email = (String) user.asMap().get("email");
-	                    
-	                    Toast.makeText(getActivity(), "Successful.", 5).show();
-	                    
-	                    HashMap<String, String> data = new HashMap<String, String>();
-	                    data.put("accessToken", accessToken);
-	                    
-	                    ServerRequest request = new ServerRequest("http://api.fub.io/loginWithFBAC", data);
-	                    request.execute();
-	                }
+	    	RequestParams params = new RequestParams();
+	    	RequestManager manager = new RequestManager();
+	    	String accessToken = session.getAccessToken();
+	    	
+            params.put("access_token", accessToken);
+            
+            manager.get("loginWithFBAC", params, new AsyncHttpResponseHandler() {
+            	@Override
+				public void onStart() {
+					Log.v(TAG , "onStart");
 				}
-	        });
-	        getFacebookInformation.executeAsync();
+
+            	
+				@Override
+				public void onSuccess(String response) {
+					Log.v(TAG , "onSuccess");
+					System.out.println(response);
+					Toast.makeText(getActivity(), response, 5).show();
+				}
+
+				
+				@Override
+				public void onFailure(Throwable error, String content) {
+					Log.e(TAG , "onFailure error : " + error.toString() + "content : " + content);
+					Toast.makeText(getActivity(), content, 5).show();
+				}
+
+				
+				@Override
+				public void onFinish() {
+					Log.v(TAG , "onFinish");
+				}
+            });
 	        
 	    	Toast.makeText(getActivity(), "Logged in.", 5).show();
 	    	return;
@@ -92,51 +87,7 @@ public class FB_Login extends Fragment {
 	    
 	    Toast.makeText(getActivity(), "Logged out.", 5).show();
 	}
-	
-	private class ServerRequest extends AsyncTask<String, String, String> {
-		private String requestUrl = null;
-		private HashMap<String, String> requestParams = null;
-		
-		
-		public ServerRequest(String URL, HashMap<String, String> data) {
-			requestParams = data;
-			requestUrl = URL;
-		}
-		
-		
-		@Override
-		protected String doInBackground(String... params) {
-			HttpClient client = new DefaultHttpClient();
-			HttpPost post = new HttpPost(requestUrl);
-			HttpResponse response = null;
-			ArrayList<NameValuePair> nameValuePair = new ArrayList<NameValuePair>();
-			Iterator<String> it = requestParams.keySet().iterator();
-			
-			while (it.hasNext()) {
-				String key = it.next();
-				nameValuePair.add(new BasicNameValuePair(key, requestParams.get(key)));
-			}
-			
-			try {
-				post.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
-				response = client.execute(post);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
-			return String.valueOf(response.getStatusLine().getStatusCode());
-		}
-		
-		
-		@Override
-		protected void onPostExecute(String responseCode) {
-			int res = Integer.parseInt(responseCode);
-			
-			if (res == 500 || res == 401) {
-				Toast.makeText(getActivity(), "Failed to connect to Fubio server.", 5).show();
-			} 
-		}	
-	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) { //UI lifecycle helper manages facebook session on pause,resume,destroy.
