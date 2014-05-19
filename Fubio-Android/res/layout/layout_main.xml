@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
     android:background="@drawable/bg"
-    android:gravity="bottom|center_vertical"
-    android:orientation="vertical" >
-	
+    android:gravity="bottom" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|center_vertical"
+        android:orientation="vertical" >
+    </LinearLayout>
+
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:paddingTop="100dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/icon" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginTop="42dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:gravity="center"
+        android:text="Arkadaşların ve diğer rakiplerinle yarışıp turnuvalarda hediye kazanmak için üye olmalısın!"
+        android:textColor="@color/WhiteSmoke"
+        android:textSize="15dp" />
+
+</RelativeLayout>
