@@ -2,7 +2,9 @@ package com.st.fubio_android;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.st.fubio_android.Music.MusicService;
@@ -24,7 +26,7 @@ public class MainActivity extends FragmentActivity {
 	public static int [] prgmImages={R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher};
 	
 	private FB_Login mainFragment; 
-	
+	private SlidingMenu menu;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.layout_main);
 
         // Sets and configures the SlidingMenu
-        SlidingMenu menu = new SlidingMenu(this);
+        menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         menu.setShadowWidthRes(R.dimen.shadow_width);
@@ -70,5 +72,14 @@ public class MainActivity extends FragmentActivity {
         } else {
             mainFragment = (FB_Login) getSupportFragmentManager().findFragmentById(android.R.id.content);
         }
+    }
+    
+    
+    public void onMenuItemClick(View v){
+    	TextView tView = (TextView) v.findViewById(R.id.textView1);
+    	if(tView.getText().toString() == "Uygulama Hakkında"){
+    		setContentView(R.layout.layout_about);
+    		menu.toggle();
+    	}
     }
 }

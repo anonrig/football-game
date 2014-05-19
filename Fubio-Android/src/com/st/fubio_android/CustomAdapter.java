@@ -96,14 +96,7 @@ public class CustomAdapter extends BaseAdapter {
         holder.mainItem.setText(menuItem[position]);
         holder.subItem.setText(subMenuItem[position]);
         holder.img.setImageResource(imageId[position]);     
-        
-        rowView.setOnClickListener(new OnClickListener() {        
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "You Clicked " + menuItem[position], Toast.LENGTH_LONG).show();
-			}
-        }); 
-        
+  
         return rowView;
     }
 }
