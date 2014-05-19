@@ -3,8 +3,13 @@ package com.st.fubio_android;
 
 import java.util.Arrays;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,6 +25,7 @@ import com.facebook.widget.LoginButton;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.st.fubio_android.ServerConnections.RequestManager;
+import com.st.fubio_android.ServerConnections.TinyDB;
 
 
 
@@ -70,7 +76,19 @@ public class FB_Login extends Fragment {
 				public void onSuccess(String response) {
 					Log.v(TAG , "onSuccess");
 					System.out.println(response);
-					Toast.makeText(getActivity(), response, 5).show();
+			
+					try {
+						JSONObject jObject = new JSONObject(response);
+						
+						TinyDB tinydb = new TinyDB(getActivity().getApplicationContext());
+						tinydb.putString("name", jObject.getString("name"));
+						tinydb.putString("teamImageName", jObject.getString("teamImageName"));
+						tinydb.putInt("id", jObject.getInt("id"));
+						tinydb.putInt("facebookId", jObject.getInt("facebookId"));
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 
 				
