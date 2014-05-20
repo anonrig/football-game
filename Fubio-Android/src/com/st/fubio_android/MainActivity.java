@@ -77,9 +77,15 @@ public class MainActivity extends FragmentActivity {
     
     public void onMenuItemClick(View v){
     	TextView tView = (TextView) v.findViewById(R.id.textView1);
-    	if(tView.getText().toString() == "Uygulama Hakkında"){
-    		setContentView(R.layout.layout_about);
-    		menu.toggle();
+    	
+    	switch(tView.getText().toString()) {
+    		case "Uygulama Hakkında":
+    			setContentView(R.layout.layout_about);
+        		menu.toggle();
+        		break;
+        	default:
+        		System.out.println(tView.getText().toString());
+        		break;
     	}
     }
 }
