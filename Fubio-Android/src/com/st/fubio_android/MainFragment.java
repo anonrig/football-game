@@ -58,11 +58,19 @@ public class MainFragment extends FragmentActivity {
     	TextView tView = (TextView) v.findViewById(R.id.textView1);
     	
     	switch(tView.getText().toString()) {
+    		case "Hoşgeldin":
+    			startActivity(new Intent(this, MainActivity.class));
+    			menu.toggle();
+    			break;
     		case "Uygulama Hakkında":
     			//setContentView(R.layout.layout_about);
     			startActivity(new Intent(this, AboutActivity.class));
         		menu.toggle();
         		break;
+    		case "Ayarlar":
+    			startActivity(new Intent(this, SettingsActivity.class));
+    			menu.toggle();
+    			break;
         	default:
         		System.out.println(tView.getText().toString());
         		break;
