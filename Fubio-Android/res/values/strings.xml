@@ -7,6 +7,7 @@
     <string name="app_id">421456471293649</string>
     <string name="title_activity_list_view">ListView</string>
     <string name="app_title">Fubio</string>
+    <string name="title_activity_about">Uygulama Hakkında</string>
     <string name="welcometext">Arkadaşların ve diğer rakiplerinle yarışıp turnuvalarda hediye kazanmak için üye olmalısın!</string>
 
 </resources>
