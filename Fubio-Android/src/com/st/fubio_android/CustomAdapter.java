@@ -26,10 +26,10 @@ public class CustomAdapter extends BaseAdapter {
  	private static LayoutInflater inflater=null;
  	
  	
-    public CustomAdapter(MainActivity mainActivity, String[] itemList, String[] subItem, int[] itemIcon) {
+    public CustomAdapter(MainFragment mainFragment, String[] itemList, String[] subItem, int[] itemIcon) {
         menuItem=itemList;
         subMenuItem = subItem;
-        context=mainActivity;
+        context=mainFragment;
         imageId=itemIcon;
         inflater = ( LayoutInflater )context.
                  getSystemService(Context.LAYOUT_INFLATER_SERVICE);
