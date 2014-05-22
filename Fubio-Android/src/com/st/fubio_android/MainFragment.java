@@ -19,6 +19,15 @@ public class MainFragment extends FragmentActivity {
 	SlidingMenu menu;
 	
 	@Override
+	public void onBackPressed() {
+		if (menu.isMenuShowing()) {
+			menu.showContent();
+		} else {
+			super.onBackPressed();
+		}
+	}
+	
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		
