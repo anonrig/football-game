@@ -59,16 +59,16 @@ public class MainFragment extends FragmentActivity {
     	
     	switch(tView.getText().toString()) {
     		case "Hoşgeldin":
-    			startActivity(new Intent(this, MainActivity.class));
+    			startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)); // Flags prevent duplicate activities and reorders the position of view to the front.
     			menu.toggle();
     			break;
     		case "Uygulama Hakkında":
     			//setContentView(R.layout.layout_about);
-    			startActivity(new Intent(this, AboutActivity.class));
+    			startActivity(new Intent(this, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
         		menu.toggle();
         		break;
     		case "Ayarlar":
-    			startActivity(new Intent(this, SettingsActivity.class));
+    			startActivity(new Intent(this, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     			menu.toggle();
     			break;
         	default:
