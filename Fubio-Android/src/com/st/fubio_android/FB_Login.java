@@ -53,7 +53,7 @@ public class FB_Login extends Fragment {
 	private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
 	    if (session.isOpened()) {
 	    	RequestParams params = new RequestParams();
-	    	RequestManager manager = new RequestManager();
+	    	RequestManager manager = new RequestManager(getActivity());
 	    	String accessToken = session.getAccessToken();
 	    	
             params.put("access_token", accessToken);

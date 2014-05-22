@@ -31,7 +31,7 @@ public class SettingsActivity extends MainFragment {
 		setContentView(R.layout.layout_settings);
 
 		
-		RequestManager req = new RequestManager();
+		RequestManager req = new RequestManager(this);
 		req.get("questions/gs", null, new AsyncHttpResponseHandler() {
         	//ProgressDialog progress = new ProgressDialog(getApplicationContext());
         	
