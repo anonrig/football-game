@@ -39,8 +39,4 @@ public class RequestManager {
 	public String getAbsolutePath(String url) {
 		return API_PATH + url;
 	}
-	
-	public void storeCookie() {
-		
-	}
 }

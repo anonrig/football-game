@@ -63,7 +63,6 @@ public class MainFragment extends FragmentActivity {
     			menu.toggle();
     			break;
     		case "Uygulama Hakkında":
-    			//setContentView(R.layout.layout_about);
     			startActivity(new Intent(this, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
         		menu.toggle();
         		break;
