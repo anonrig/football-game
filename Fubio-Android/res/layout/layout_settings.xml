@@ -9,9 +9,11 @@
     
     >
 
-    <Spinner
-        android:id="@+id/teamSelection"
+    <Button
+        android:id="@+id/gototeamselect"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Select Team" 
+        android:onClick="chooseTeam"/>
 
 </FrameLayout>
