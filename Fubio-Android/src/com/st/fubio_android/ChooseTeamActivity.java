@@ -17,6 +17,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -134,13 +135,15 @@ public class ChooseTeamActivity extends MainFragment {
 										content = "Please login first.";
 									} 
 									
-									Toast.makeText(getApplicationContext(), "Please authenticate first.", 5).show();
+									Toast.makeText(getApplicationContext(), content, 5).show();
 								}
 
 								
 								@Override
 								public void onFinish() {
 									Log.v("TeamSelect" , "onFinish");
+									startActivity(new Intent(getApplicationContext(), SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+									finish();
 								}
 							});
 					}
