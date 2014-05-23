@@ -47,6 +47,10 @@
             android:name="com.st.fubio_android.ChooseTeamActivity"
             android:label="@string/title_activity_choose_team" >
         </activity>
+        <activity
+            android:name="com.st.fubio_android.PractiseCategoriesActivity"
+            android:label="@string/title_activity_practise_categories" >
+        </activity>
     </application>
 
 </manifest>

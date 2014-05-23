@@ -11,5 +11,6 @@
     <string name="title_activity_settings">Ayarlar</string>
     <string name="title_activity_about">Uygulama Hakkında</string>
     <string name="title_activity_choose_team">Takım Seç</string>
+    <string name="title_activity_practise_categories">Antrenman</string>
 
 </resources>
