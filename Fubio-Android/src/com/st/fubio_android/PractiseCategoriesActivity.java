@@ -9,6 +9,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -17,6 +18,7 @@ import com.st.fubio_android.ServerConnections.RequestManager;
 
 public class PractiseCategoriesActivity extends Activity {
 
+	private static String TAG = "PracticeCarousel";
 	private JSONArray jsonArray;
 	private List<String> nameList, descriptionList, imageList;
 	private ViewPager mViewPager;
@@ -35,13 +37,13 @@ public class PractiseCategoriesActivity extends Activity {
 
 			@Override
 			public void onStart() {
-				//TO DO Log.
+				Log.d(TAG, "onStart");
 			}
 
 
 			@Override
 			public void onSuccess(String response) {
-				//TO DO Log.
+				Log.d(TAG, "onSuccess");
 				try { 
 					jsonArray = new JSONArray(response);
 					int jsonSize = jsonArray.length();
@@ -59,16 +61,16 @@ public class PractiseCategoriesActivity extends Activity {
 
 			@Override
 			public void onFailure(Throwable error, String content) {
-				//TO DO Log.
+				Log.e(TAG, "onFailure");
+				Log.e(TAG, content);
 			}
 
 
 			@Override
 			public void onFinish() {
-				//TO DO Log.
+				Log.d(TAG, "onFinish");
 				try{
 					mViewPager = (ViewPager) findViewById(R.id.pager);
-					// set the adapter
 					mViewPager.setAdapter(new CarouselAdapter(getApplicationContext(), nameList, imageList));
 					mViewPager.setCurrentItem(0);
 				} catch(Exception ex){
