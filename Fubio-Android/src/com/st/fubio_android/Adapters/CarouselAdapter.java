@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.st.fubio_android.R;
+import com.st.fubio_android.Models.PracticeCategoryObject;
 
 
 public class CarouselAdapter extends PagerAdapter {
 
-	private List<String> MainItems, subItems;//Will be replaced by object.
+	private List<PracticeCategoryObject> Categories;
 	private LayoutInflater mInflater;
 
-	public CarouselAdapter(Context context, List<String> MainItems, List<String> imgUrls) {
+	public CarouselAdapter(Context context, List<PracticeCategoryObject> Categories) {
 		mInflater = LayoutInflater.from(context);
-		this.MainItems = MainItems;
-		this.subItems = imgUrls;
+		this.Categories = Categories;
 	}
 
 
@@ -40,8 +40,8 @@ public class CarouselAdapter extends PagerAdapter {
 		TextView txMain = (TextView) pageView.findViewById(R.id.textView1);
 		TextView txSub = (TextView) pageView.findViewById(R.id.textView2);
 		//ImageView imgView = (ImageView) pageView.findViewById(R.id.imageView1);
-		txMain.setText(MainItems.get(position));
-		txSub.setText(subItems.get(position));
+		txMain.setText(Categories.get(position).getItemTitle());
+		txSub.setText(Categories.get(position).getItemDescription());
 		//TO DO get images from api.
 		container.addView(pageView);
 		return pageView;
@@ -50,7 +50,7 @@ public class CarouselAdapter extends PagerAdapter {
 
 	@Override
 	public int getCount() {
-		return MainItems.size();
+		return Categories.size();
 	}
 
 
