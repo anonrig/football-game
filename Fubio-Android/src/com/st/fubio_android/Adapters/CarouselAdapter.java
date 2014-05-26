@@ -43,6 +43,7 @@ public class CarouselAdapter extends PagerAdapter {
 		txMain.setText(MainItems.get(position));
 		txSub.setText(subItems.get(position));
 		//TO DO get images from api.
+		container.addView(pageView);
 		return pageView;
 	}
 
