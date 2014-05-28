@@ -1,5 +1,6 @@
 package com.st.fubio_android;
 
+import com.st.fubio_android.Adapters.*;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -9,6 +10,7 @@ import org.json.JSONObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.st.fubio_android.Models.Team;
+import com.st.fubio_android.ServerConnections.ImageFetcher;
 import com.st.fubio_android.ServerConnections.RequestManager;
 import com.st.fubio_android.ServerConnections.TinyDB;
 
@@ -44,14 +46,13 @@ public class ChooseTeamActivity extends MainFragment {
 		
 		RequestManager req = new RequestManager(this);
 		req.get("teams", null, new AsyncHttpResponseHandler() {
-//        	ProgressDialog progress = new ProgressDialog(getApplicationContext());
+        	ProgressDialog progress = new ProgressDialog(ChooseTeamActivity.this);
         	
         	@Override
 			public void onStart() {
-//				progress.setTitle("Loading");
-//				progress.setMessage("Thank you for your patience.");
-//				progress.show();
-        		System.out.println("basladi");
+				progress.setTitle("Loading");
+				progress.setMessage("Thank you for your patience.");
+				progress.show();
 			}
 
         		
@@ -61,15 +62,12 @@ public class ChooseTeamActivity extends MainFragment {
 					JSONArray jArray = new JSONArray(response);
 					System.out.println(jArray.toString());
 					System.out.println(jArray.length());
-					
+					JSONObject currentObject;
 					for(int i = 0; i < jArray.length(); i++) {
-						JSONObject currentObject = jArray.getJSONObject(i);
-						if (currentObject != null) {
-							Team tmp = new Team(currentObject.getString("id"), currentObject.getString("name"), currentObject.getString("imagename"), currentObject.getInt("sort"));
-							teamList.add(tmp);
-							System.out.println(tmp.getName());
-						}
-						
+						currentObject = jArray.getJSONObject(i);
+						Team tmp = new Team(currentObject.getString("id"), currentObject.getString("name"), currentObject.getString("imagename"), currentObject.getInt("sort"));
+						tmp.setImage(ImageFetcher.getInstance().getImage("http://api.fub.io/img/teams/" + tmp.getImagename()));
+						teamList.add(tmp);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,78 +77,68 @@ public class ChooseTeamActivity extends MainFragment {
 			
 			@Override
 			public void onFailure(Throwable error, String content) {
-				System.out.println(content);
+				Log.e("TeamSelect" , "onFailure error : " + error.toString() + "content : " + content);
 				Toast.makeText(getApplicationContext(), content, 5).show();
 			}
 
-			
+
 			@Override
 			public void onFinish() {
-				System.out.println("bitti");
-//				progress.dismiss();
-				ListView lv = (ListView) findViewById(R.id.chooseteam);
-				
-				ArrayList<String> deneme = new ArrayList<String>();
-				
-				for (Team tmp : teamList) {
-					deneme.add(tmp.getName());
-				}
+				progress.dismiss();
 
-				String[] titles = deneme.toArray(new String[deneme.size()]);
-				
-		        lv.setAdapter(new ArrayAdapter<String>(mf, android.R.layout.simple_list_item_1, titles));
-		        
-		        lv.setOnItemClickListener(new OnItemClickListener() {
+				ListView lv = (ListView) findViewById(R.id.chooseteam);
+				lv.setAdapter(new ChooseTeamAdapter(mf, teamList));
+
+				lv.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-							Team chosenTeam = teamList.get(position);
-							
-							RequestManager rm = new RequestManager(getApplicationContext());
-							RequestParams req = new RequestParams();
-							
-							req.put("teamId", chosenTeam.getId());
-							
-							rm.post("player/team", req, new AsyncHttpResponseHandler() {
-				            	
-				            	@Override
-								public void onStart() {
-									Log.v("TeamSelect", "onStart");
-								}
+						Team chosenTeam = teamList.get(position);
 
-				            	
-								@Override
-								public void onSuccess(String response) {
-									Log.v("TeamSelect", "onSuccess");
-									System.out.println(response);
-								}
+						RequestManager rm = new RequestManager(getApplicationContext());
+						RequestParams req = new RequestParams();
 
-								
-								@Override
-								public void onFailure(Throwable error, String content) {
-									Log.e("TeamSelect" , "onFailure error : " + error.toString() + "content : " + content);
-									
-									if (content == "Unauthorized") {
-										content = "Please login first.";
-									} 
-									
-									Toast.makeText(getApplicationContext(), content, 5).show();
-								}
+						req.put("teamId", chosenTeam.getId());
 
-								
-								@Override
-								public void onFinish() {
-									Log.v("TeamSelect" , "onFinish");
-									startActivity(new Intent(getApplicationContext(), SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-									finish();
-								}
-							});
+						rm.post("player/team", req, new AsyncHttpResponseHandler() {
+
+							@Override
+							public void onStart() {
+								Log.v("TeamSelect", "onStart");
+							}
+
+
+							@Override
+							public void onSuccess(String response) {
+								Log.v("TeamSelect", "onSuccess");
+								System.out.println(response);
+							}
+
+
+							@Override
+							public void onFailure(Throwable error, String content) {
+								Log.e("TeamSelect" , "onFailure error : " + error.toString() + "content : " + content);
+
+								if (content == "Unauthorized") 
+									content = "Please login first.";
+
+								Toast.makeText(getApplicationContext(), content, 5).show();
+							}
+
+
+							@Override
+							public void onFinish() {
+								Log.v("TeamSelect" , "onFinish");
+								startActivity(new Intent(getApplicationContext(), SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+								finish();
+							}
+						});
 					}
-		        	
-		        });
+
+				});
 			}
-        });
+		});
 	}
 
 }
