@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -42,11 +44,14 @@ public class PractiseCategoriesActivity extends Activity {
 				try { 
 					jsonArray = new JSONArray(response);
 					int jsonSize = jsonArray.length();
+					JSONObject currentObject = new JSONObject();
 					for(int position = 0;position < jsonSize; position++){
-						PracticeCategoryObject pCatObj = new PracticeCategoryObject(jsonArray.getJSONObject(position).getString("id"), 
-								jsonArray.getJSONObject(position).getString("name"), jsonArray.getJSONObject(position).getString("description"),
-								jsonArray.getJSONObject(position).getString("image"), jsonArray.getJSONObject(position).getString("token"), 
-								jsonArray.getJSONObject(position).getString("sort"), jsonArray.getJSONObject(position).getString("isPrivate"));
+						currentObject = jsonArray.getJSONObject(position);
+						
+						PracticeCategoryObject pCatObj = new PracticeCategoryObject(currentObject.getString("id"), 
+								currentObject.getString("name"), currentObject.getString("description"),
+								currentObject.getString("image"), currentObject.getString("token"), 
+								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"));
 						Categories.add(pCatObj);
 					}
 				} catch (JSONException e) {
@@ -66,13 +71,13 @@ public class PractiseCategoriesActivity extends Activity {
 			@Override
 			public void onFinish() {
 				Log.d(TAG, "onFinish");
+				
 				try{
-
 					ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 					mViewPager.setAdapter(new CarouselAdapter(getApplicationContext(), Categories));
 					mViewPager.setCurrentItem(0);
 				} catch(Exception ex){
-					Toast.makeText(getApplicationContext(), "Nope again.", Toast.LENGTH_SHORT).show();;
+					Toast.makeText(getApplicationContext(), "Please try again.", Toast.LENGTH_SHORT).show();;
 				}
 			}
 		});
