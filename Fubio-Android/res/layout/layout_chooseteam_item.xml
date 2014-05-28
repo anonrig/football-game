@@ -9,11 +9,13 @@
         android:id="@+id/choose_team_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
         android:bottom="5dp"
         android:left="5dp"
+        android:paddingBottom="10dp"
         android:right="20dp"
         android:src="@drawable/ic_launcher"
         android:top="5dp" />
@@ -26,7 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/choose_team_image"
-        android:paddingTop="5dp"
+        android:paddingTop="10dp"
         android:text="TextView" />
 
 </RelativeLayout>
