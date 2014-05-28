@@ -1,14 +1,6 @@
 package com.st.fubio_android;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.st.fubio_android.Music.MusicService;
 
 
 

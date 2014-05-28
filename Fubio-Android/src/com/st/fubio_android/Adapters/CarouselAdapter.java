@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -1,6 +1,5 @@
 package com.st.fubio_android;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 

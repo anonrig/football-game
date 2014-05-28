@@ -4,7 +4,6 @@ import com.st.fubio_android.Adapters.*;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -12,28 +11,16 @@ import com.loopj.android.http.RequestParams;
 import com.st.fubio_android.Models.Team;
 import com.st.fubio_android.ServerConnections.ImageFetcher;
 import com.st.fubio_android.ServerConnections.RequestManager;
-import com.st.fubio_android.ServerConnections.TinyDB;
 
-import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class ChooseTeamActivity extends MainFragment {
 	ArrayList <Team> teamList = new ArrayList<>();

@@ -1,18 +1,12 @@
 package com.st.fubio_android.Adapters;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.st.fubio_android.R;
 import com.st.fubio_android.Models.Team;
-import com.st.fubio_android.ServerConnections.ImageFetcher;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ChooseTeamAdapter extends ArrayAdapter<Team> {
-	private static String API_PATH = "http://api.fub.io";
 	private final Context context;
     private final ArrayList<Team> itemsArrayList;
 
