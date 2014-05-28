@@ -1,10 +1,13 @@
 package com.st.fubio_android.Models;
 
+import android.graphics.Bitmap;
+
 public class Team {
 	String id;
 	String name;
 	String imagename;
 	int sort;
+	Bitmap image;
 	
 	public Team(String i, String n, String in, int s) {
 		this.id = i;
@@ -45,4 +48,11 @@ public class Team {
 		this.sort = sort;
 	}
 	
+	public void setImage(Bitmap image) {
+		this.image = image;
+	}
+	
+	public Bitmap getImage() {
+		return this.image;
+	}
 }
