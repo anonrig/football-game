@@ -51,6 +51,10 @@
             android:name="com.st.fubio_android.PractiseCategoriesActivity"
             android:label="@string/title_activity_practise_categories" >
         </activity>
+        
+        <service
+            android:name=".Music.MusicService"
+            ></service>
     </application>
 
 </manifest>

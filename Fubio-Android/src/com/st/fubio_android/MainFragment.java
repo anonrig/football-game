@@ -3,8 +3,12 @@ package com.st.fubio_android;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.st.fubio_android.Music.MusicService;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -30,23 +34,15 @@ public class MainFragment extends FragmentActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		
-		
-		Thread thread = new Thread()
-		{
-		    @Override
-		    public void run() {
-		        MusicService mp = new MusicService(getApplicationContext());
-		        while(true) {
-		        	mp.play();
-		        }
-				
-		    }
-		};
-		
-		thread.start();
-		
-        // Sets and configures the SlidingMenu
+        
+        bindService(new Intent(this, MusicService.class), new ServiceConnection() {
+			@Override
+			public void onServiceDisconnected(ComponentName name) { }
+			
+			@Override
+			public void onServiceConnected(ComponentName name, IBinder service) { }
+		}, Service.START_STICKY);
+
         menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
