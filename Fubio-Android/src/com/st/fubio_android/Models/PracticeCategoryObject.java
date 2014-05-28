@@ -2,21 +2,19 @@ package com.st.fubio_android.Models;
 
 
 public class PracticeCategoryObject {
-
-	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, isPrivate, itemProductId, itemPrice;
-
-	public PracticeCategoryObject(String id, String itemTitle,
-			String itemDescription, String itemImageUrl, String itemToken, String itemSort, String string) {
-		super();
+	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, itemProductId, itemPrice;
+	boolean isPrivate;
+	
+	public PracticeCategoryObject(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
 		this.itemTitle = itemTitle;
 		this.itemDescription = itemDescription;
 		this.itemImageUrl = itemImageUrl;
 		this.itemToken = itemToken;
 		this.itemSort = itemSort;
-		this.isPrivate = string;
-		itemProductId = null;
-		itemPrice = null;
+		this.isPrivate = isPrivate;
+		this.itemProductId = null;
+		this.itemPrice = null;
 	}
 
 
@@ -92,7 +90,7 @@ public class PracticeCategoryObject {
 	}
 	
 	
-	public String getIsPrivate(){
+	public boolean getIsPrivate(){
 		return isPrivate;
 	}
 }
