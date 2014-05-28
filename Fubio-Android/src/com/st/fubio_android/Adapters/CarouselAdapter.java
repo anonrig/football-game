@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,14 @@ public class CarouselAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 		// using the position parameter, inflate the proper layout, also add
 		// it to the container parameter
-
+		PracticeCategoryObject currentCategory = Categories.get(position);
 		ViewGroup pageView = (ViewGroup) mInflater.inflate(R.layout.layout_carouselitem, container, false);
 		TextView txMain = (TextView) pageView.findViewById(R.id.textView1);
 		TextView txSub = (TextView) pageView.findViewById(R.id.textView2);
 		//ImageView imgView = (ImageView) pageView.findViewById(R.id.imageView1);
-		txMain.setText(Categories.get(position).getItemTitle());
-		txSub.setText(Categories.get(position).getItemDescription());
+		
+		txMain.setText(currentCategory.getItemTitle());
+		txSub.setText(currentCategory.getItemDescription());
 		//TO DO get images from api.
 		container.addView(pageView);
 		return pageView;
