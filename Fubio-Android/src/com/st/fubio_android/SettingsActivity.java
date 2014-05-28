@@ -1,15 +1,5 @@
 package com.st.fubio_android;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.st.fubio_android.Models.Team;
-import com.st.fubio_android.ServerConnections.RequestManager;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
