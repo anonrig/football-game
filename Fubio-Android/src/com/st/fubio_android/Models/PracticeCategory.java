@@ -1,11 +1,11 @@
 package com.st.fubio_android.Models;
 
 
-public class PracticeCategoryObject {
+public class PracticeCategory {
 	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, itemProductId, itemPrice;
 	boolean isPrivate;
 	
-	public PracticeCategoryObject(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
+	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
 		this.itemTitle = itemTitle;
 		this.itemDescription = itemDescription;

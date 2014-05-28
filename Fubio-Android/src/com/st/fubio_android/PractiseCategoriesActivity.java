@@ -13,14 +13,14 @@ import android.util.Log;
 import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.st.fubio_android.Adapters.CarouselAdapter;
-import com.st.fubio_android.Models.PracticeCategoryObject;
+import com.st.fubio_android.Models.PracticeCategory;
 import com.st.fubio_android.ServerConnections.RequestManager;
 
 public class PractiseCategoriesActivity extends Activity {
 
 	private static String TAG = "PracticeCarousel";
 	private JSONArray jsonArray;
-	private List<PracticeCategoryObject> Categories;
+	private List<PracticeCategory> Categories;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class PractiseCategoriesActivity extends Activity {
 		setContentView(R.layout.layout_practise_categories);
 
 		RequestManager rm = new RequestManager(getApplicationContext());
-		Categories = new ArrayList<PracticeCategoryObject>();
+		Categories = new ArrayList<PracticeCategory>();
 
 		rm.get("practiseCategories", null, new AsyncHttpResponseHandler() {
 
@@ -48,7 +48,7 @@ public class PractiseCategoriesActivity extends Activity {
 					for(int position = 0;position < jsonSize; position++){
 						currentObject = jsonArray.getJSONObject(position);
 						
-						PracticeCategoryObject pCatObj = new PracticeCategoryObject(currentObject.getString("id"), 
+						PracticeCategory pCatObj = new PracticeCategory(currentObject.getString("id"), 
 								currentObject.getString("name"), currentObject.getString("description"),
 								currentObject.getString("image"), currentObject.getString("token"), 
 								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"));

@@ -11,15 +11,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.st.fubio_android.R;
-import com.st.fubio_android.Models.PracticeCategoryObject;
+import com.st.fubio_android.Models.PracticeCategory;
 
 
 public class CarouselAdapter extends PagerAdapter {
 
-	private List<PracticeCategoryObject> Categories;
+	private List<PracticeCategory> Categories;
 	private LayoutInflater mInflater;
 
-	public CarouselAdapter(Context context, List<PracticeCategoryObject> Categories) {
+	public CarouselAdapter(Context context, List<PracticeCategory> Categories) {
 		mInflater = LayoutInflater.from(context);
 		this.Categories = Categories;
 	}
@@ -36,7 +36,7 @@ public class CarouselAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 		// using the position parameter, inflate the proper layout, also add
 		// it to the container parameter
-		PracticeCategoryObject currentCategory = Categories.get(position);
+		PracticeCategory currentCategory = Categories.get(position);
 		ViewGroup pageView = (ViewGroup) mInflater.inflate(R.layout.layout_carouselitem, container, false);
 		TextView txMain = (TextView) pageView.findViewById(R.id.textView1);
 		TextView txSub = (TextView) pageView.findViewById(R.id.textView2);
