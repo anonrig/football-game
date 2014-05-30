@@ -91,6 +91,9 @@ public class PractiseCategoriesActivity extends Activity {
 					ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 					mViewPager.setAdapter(new CarouselAdapter(getApplicationContext(), Categories));
 					mViewPager.setCurrentItem(0);
+					
+					PageIndicator mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
+					mIndicator.setViewPager(mViewPager);
 			        
 				} catch(Exception ex){
 					ex.printStackTrace();
