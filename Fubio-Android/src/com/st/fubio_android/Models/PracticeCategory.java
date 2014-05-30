@@ -6,27 +6,24 @@ import android.graphics.Bitmap;
 public class PracticeCategory {
 	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, itemProductId, itemPrice;
 	boolean isPrivate;
-	Bitmap bitmap = null;
+	Bitmap bitmap;
 	
 	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
 		this.itemTitle = itemTitle;
-		if(itemDescription.contains("\\n"))
-			itemDescription = itemDescription.replace("\\n", " ");
-		this.itemDescription = itemDescription;
+		this.itemDescription = itemDescription.replace("\\n", " ");
 		this.itemImageUrl = itemImageUrl;
 		this.itemToken = itemToken;
 		this.itemSort = itemSort;
 		this.isPrivate = isPrivate;
 		this.itemProductId = null;
 		this.itemPrice = null;
+		this.bitmap = null;
 	}
 
 	
 	public Bitmap getBitmap() {
-		if(bitmap != null)
 		return bitmap;
-		return null;
 	}
 	
 
@@ -107,7 +104,7 @@ public class PracticeCategory {
 	}
 	
 	
-	public boolean IsPrivate(){
+	public boolean isPrivate(){
 		return isPrivate;
 	}
 }

@@ -34,10 +34,12 @@ public class PractiseCategoriesActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_practise_categories);
+		
 		RequestManager rm = new RequestManager(getApplicationContext());
 		Categories = new ArrayList<PracticeCategory>();
 
 		rm.get("practiseCategories", null, new AsyncHttpResponseHandler() {
+			
 			ProgressDialog progress = new ProgressDialog(PractiseCategoriesActivity.this);
 			@Override
 			public void onStart() {
@@ -51,7 +53,6 @@ public class PractiseCategoriesActivity extends Activity {
 			@Override
 			public void onSuccess(String response) {
 				Log.d(TAG, "onSuccess");
-				System.out.println(response);
 				try { 
 					jsonArray = new JSONArray(response);
 					int jsonSize = jsonArray.length();
@@ -63,8 +64,7 @@ public class PractiseCategoriesActivity extends Activity {
 								currentObject.getString("name"), currentObject.getString("description"),
 								currentObject.getString("image"), currentObject.getString("token"), 
 								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"));
-						String url = "http://api.fub.io/img/practise/" + pCatObj.getItemImageUrl();
-						pCatObj.setBitmap(ImageFetcher.getInstance().getImage(url));//Uploads all images, but adapter initializes faster so images 
+						pCatObj.setBitmap(ImageFetcher.getInstance().getImage("http://api.fub.io/img/practise/" + pCatObj.getItemImageUrl()));//Uploads all images, but adapter initializes faster so images 
 						Categories.add(pCatObj); 									//can't be seen at first button hit.
 					}
 				} catch (JSONException e) {
@@ -78,7 +78,6 @@ public class PractiseCategoriesActivity extends Activity {
 			public void onFailure(Throwable error, String content) {
 				Log.e(TAG, "onFailure");
 				Log.e(TAG, content);
-				progress.dismiss();
 				Toast.makeText(PractiseCategoriesActivity.this, "Failed to get information from server.", 5).show();
 			}
 
@@ -94,7 +93,6 @@ public class PractiseCategoriesActivity extends Activity {
 					
 					PageIndicator mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
 					mIndicator.setViewPager(mViewPager);
-			        
 				} catch(Exception ex){
 					ex.printStackTrace();
 					Toast.makeText(getApplicationContext(), "Please try again.", Toast.LENGTH_SHORT).show();
@@ -116,5 +114,4 @@ public class PractiseCategoriesActivity extends Activity {
 		finish();
 		return super.onMenuItemSelected(featureId, item);
 	}
-
 }

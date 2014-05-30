@@ -6,6 +6,6 @@
         android:id="@+id/Back"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Back"/>
+        android:title="@string/practice_setting_back"/>
 
 </menu>

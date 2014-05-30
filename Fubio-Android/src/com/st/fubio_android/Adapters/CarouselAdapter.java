@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.st.fubio_android.R;
 import com.st.fubio_android.Models.PracticeCategory;
+import com.st.fubio_android.ServerConnections.ImageFetcher;
 
 
 public class CarouselAdapter extends PagerAdapter {
 
 	private List<PracticeCategory> Categories;
 	private LayoutInflater mInflater;
+	private ImageFetcher iFetcher;
 
 	public CarouselAdapter(Context context, List<PracticeCategory> Categories) {
 		mInflater = LayoutInflater.from(context);
