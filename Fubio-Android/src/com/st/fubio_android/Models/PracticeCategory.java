@@ -8,6 +8,8 @@ public class PracticeCategory {
 	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
 		this.itemTitle = itemTitle;
+		if(itemDescription.contains("\\n"))
+			itemDescription = itemDescription.replace("\\n", " ");
 		this.itemDescription = itemDescription;
 		this.itemImageUrl = itemImageUrl;
 		this.itemToken = itemToken;
@@ -90,7 +92,7 @@ public class PracticeCategory {
 	}
 	
 	
-	public boolean getIsPrivate(){
+	public boolean IsPrivate(){
 		return isPrivate;
 	}
 }
