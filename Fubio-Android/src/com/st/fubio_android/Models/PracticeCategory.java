@@ -1,9 +1,12 @@
 package com.st.fubio_android.Models;
 
+import android.graphics.Bitmap;
+
 
 public class PracticeCategory {
 	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, itemProductId, itemPrice;
 	boolean isPrivate;
+	Bitmap bitmap = null;
 	
 	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
@@ -17,6 +20,18 @@ public class PracticeCategory {
 		this.isPrivate = isPrivate;
 		this.itemProductId = null;
 		this.itemPrice = null;
+	}
+
+	
+	public Bitmap getBitmap() {
+		if(bitmap != null)
+		return bitmap;
+		return null;
+	}
+	
+
+	public void setBitmap(Bitmap bitmap) {
+		this.bitmap = bitmap;
 	}
 
 
