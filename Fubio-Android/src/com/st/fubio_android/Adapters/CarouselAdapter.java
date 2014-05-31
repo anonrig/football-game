@@ -3,27 +3,32 @@ package com.st.fubio_android.Adapters;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.st.fubio_android.PracticeActivity;
 import com.st.fubio_android.R;
 import com.st.fubio_android.Models.PracticeCategory;
-import com.st.fubio_android.ServerConnections.ImageFetcher;
 
 
 public class CarouselAdapter extends PagerAdapter {
 
 	private List<PracticeCategory> Categories;
 	private LayoutInflater mInflater;
-	private ImageFetcher iFetcher;
+	private Context context;
+
 
 	public CarouselAdapter(Context context, List<PracticeCategory> Categories) {
 		mInflater = LayoutInflater.from(context);
 		this.Categories = Categories;
+		this.context = context;
 	}
 
 
@@ -38,18 +43,29 @@ public class CarouselAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, final int position) {
 		// using the position parameter, inflate the proper layout, also add
 		// it to the container parameter
-		PracticeCategory currentCategory = Categories.get(position);
+		final PracticeCategory currentCategory = Categories.get(position);
 		ViewGroup pageView = (ViewGroup) mInflater.inflate(R.layout.layout_carouselitem, container, false);
 		TextView txMain = (TextView) pageView.findViewById(R.id.textView1);
 		TextView txSub = (TextView) pageView.findViewById(R.id.textView2);
 		ImageView teamImage = (ImageView) pageView.findViewById(R.id.imageView1);
+		Button btn = (Button) pageView.findViewById(R.id.button1);
 
+		OnClickListener onCarouselItemClick = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, PracticeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				TextView txV = (TextView) v.findViewById(R.id.textView1);
+				intent.putExtra("HOP", currentCategory.getItemTitle());
+				context.startActivity(intent);
+			}
+		};
+		
+		btn.setOnClickListener(onCarouselItemClick);
+		
 		txMain.setText(currentCategory.getItemTitle());
 		txSub.setText(currentCategory.getItemDescription());
-
 		teamImage.setImageBitmap(currentCategory.getBitmap());
-		txMain.setText(Categories.get(position).getItemTitle());
-		txSub.setText(Categories.get(position).getItemDescription());
 
 		container.addView(pageView);
 		return pageView;
