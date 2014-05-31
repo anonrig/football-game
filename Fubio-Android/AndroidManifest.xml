@@ -55,6 +55,7 @@
         <service
             android:name=".Music.MusicService"
             ></service>
+        <activity android:name="com.st.fubio_android.PracticeActivity"></activity>
     </application>
 
 </manifest>
