@@ -63,9 +63,9 @@ public class CarouselAdapter extends PagerAdapter {
 		
 		btn.setOnClickListener(onCarouselItemClick);
 		
-		txMain.setText(currentCategory.getItemTitle());
-		txSub.setText(currentCategory.getItemDescription());
-		teamImage.setImageBitmap(currentCategory.getBitmap());
+		txMain.setText(currentCategory.getTitle());
+		txSub.setText(currentCategory.getDescription());
+		teamImage.setImageBitmap(currentCategory.getImage());
 
 		container.addView(pageView);
 		return pageView;

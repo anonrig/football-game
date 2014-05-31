@@ -54,6 +54,7 @@ public class PractiseCategoriesActivity extends Activity {
 			public void onSuccess(String response) {
 				Log.d(TAG, "onSuccess");
 				try { 
+					System.out.println(response);
 					jsonArray = new JSONArray(response);
 					int jsonSize = jsonArray.length();
 					JSONObject currentObject = new JSONObject();
@@ -64,8 +65,8 @@ public class PractiseCategoriesActivity extends Activity {
 								currentObject.getString("name"), currentObject.getString("description"),
 								currentObject.getString("image"), currentObject.getString("token"), 
 								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"));
-						pCatObj.setBitmap(ImageFetcher.getInstance().getImage("http://api.fub.io/img/practise/" + pCatObj.getItemImageUrl()));//Uploads all images, but adapter initializes faster so images 
-						Categories.add(pCatObj); 									//can't be seen at first button hit.
+						pCatObj.setImage(ImageFetcher.getInstance().getImage("http://api.fub.io/img/practise/" + pCatObj.getImageUrl()));
+						Categories.add(pCatObj);
 					}
 				} catch (JSONException e) {
 					Toast.makeText(getApplicationContext(), "Error: Failed to initialize team lists.", 5).show();

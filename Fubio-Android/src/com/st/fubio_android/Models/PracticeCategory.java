@@ -4,107 +4,103 @@ import android.graphics.Bitmap;
 
 
 public class PracticeCategory {
-	String id, itemTitle, itemDescription, itemImageUrl, itemToken, itemSort, itemProductId, itemPrice;
+	String id, title, description, imageUrl, token, sort, productId, price;
 	boolean isPrivate;
-	Bitmap bitmap;
+	Bitmap image;
 	
 	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
 		this.id = id;
-		this.itemTitle = itemTitle;
-		this.itemDescription = itemDescription.replace("\\n", " ");
-		this.itemImageUrl = itemImageUrl;
-		this.itemToken = itemToken;
-		this.itemSort = itemSort;
+		this.title = itemTitle;
+		this.description = itemDescription.replace("\\n", " ");
+		this.imageUrl = itemImageUrl;
+		this.token = itemToken;
+		this.sort = itemSort;
 		this.isPrivate = isPrivate;
-		this.itemProductId = null;
-		this.itemPrice = null;
-		this.bitmap = null;
+		this.productId = null;
+		this.price = null;
+		this.image = null;
 	}
-
-	
-	public Bitmap getBitmap() {
-		return bitmap;
-	}
-	
-
-	public void setBitmap(Bitmap bitmap) {
-		this.bitmap = bitmap;
-	}
-
 
 	public String getId() {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-	public String getItemTitle() {
-		return itemTitle;
+	public String getTitle() {
+		return title;
 	}
 
-
-	public void setItemTitle(String itemTitle) {
-		this.itemTitle = itemTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-
-	public String getItemDescription() {
-		return itemDescription;
+	public String getDescription() {
+		return description;
 	}
 
-
-	public void setItemDescription(String itemDescription) {
-		this.itemDescription = itemDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-
-	public String getItemImageUrl() {
-		return itemImageUrl;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-
-	public void setItemImageUrl(String itemImageUrl) {
-		this.itemImageUrl = itemImageUrl;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-
-	public String getItemToken() {
-		return itemToken;
+	public String getToken() {
+		return token;
 	}
 
-
-	public void setItemToken(String itemToken) {
-		this.itemToken = itemToken;
+	public void setToken(String token) {
+		this.token = token;
 	}
 
-
-	public String getItemPrice() {
-		return itemPrice;
+	public String getSort() {
+		return sort;
 	}
 
-
-	public void setItemPrice(String itemPrice) {
-		if(itemPrice != null)
-		this.itemPrice = itemPrice;
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 
-
-	public String getPorductID() {
-		return itemProductId;
+	public String getProductId() {
+		return productId;
 	}
 
-
-	public void setPorductID(String productId) {
-		if(productId != null)
-		this.itemProductId = productId;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
-	
-	
-	public boolean isPrivate(){
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public boolean isPrivate() {
 		return isPrivate;
 	}
+
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
+
+	public Bitmap getImage() {
+		return image;
+	}
+
+	public void setImage(Bitmap image) {
+		this.image = image;
+	}
+
+	
+
 }
