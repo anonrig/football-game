@@ -1,9 +1,11 @@
 package com.st.fubio_android.Models;
 
+import java.io.Serializable;
+
 import android.graphics.Bitmap;
 
 
-public class PracticeCategory {
+public class PracticeCategory implements Serializable{
 	String id, title, description, imageUrl, token, sort, productId, price;
 	boolean isPrivate;
 	Bitmap image;
@@ -100,7 +102,4 @@ public class PracticeCategory {
 	public void setImage(Bitmap image) {
 		this.image = image;
 	}
-
-	
-
 }

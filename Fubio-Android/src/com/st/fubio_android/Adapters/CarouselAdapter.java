@@ -56,7 +56,7 @@ public class CarouselAdapter extends PagerAdapter {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, PracticeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				TextView txV = (TextView) v.findViewById(R.id.textView1);
-				intent.putExtra("HOP", currentCategory.getItemTitle());
+				intent.putExtra("PracticeCategory", currentCategory);
 				context.startActivity(intent);
 			}
 		};

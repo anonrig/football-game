@@ -1,5 +1,7 @@
 package com.st.fubio_android;
 
+import com.st.fubio_android.Models.PracticeCategory;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -11,11 +13,6 @@ public class PracticeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_practice);
 
-		String practiceTitle = getIntent().getStringExtra("HOP");
-		try{
-		System.out.println(practiceTitle);
-		}catch(Exception ex){
-			Toast.makeText(getApplicationContext(), "Cannot get byte array.", 5);
-		}
+		PracticeCategory praCatObj = (PracticeCategory)getIntent().getSerializableExtra("PracticeCategory");
 	}
 }
