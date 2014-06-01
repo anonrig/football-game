@@ -1,19 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.st.fubio_android.SettingsActivity"
-    tools:ignore="MergeRootFrame" 
     android:background="@drawable/bg"
-    
-    >
+    tools:context="com.st.fubio_android.SettingsActivity"
+    tools:ignore="MergeRootFrame" >
 
     <Button
         android:id="@+id/gototeamselect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Team" 
-        android:onClick="chooseTeam"/>
+        android:onClick="chooseTeam"
+        android:text="Select Team" />
 
-</FrameLayout>
+    <Switch
+        android:id="@+id/musicSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/gototeamselect"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:checked="true"
+        android:text="Music:"
+        android:textColor="@color/White"
+        android:textColorHint="@color/White"
+        android:textColorLink="@color/White" />
+
+</RelativeLayout>
