@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.st.fubio_android.PracticeActivity;
+import com.st.fubio_android.GameLoadingActivity;
 import com.st.fubio_android.R;
 import com.st.fubio_android.R.color;
 import com.st.fubio_android.ServerConnections.ImageLoader;
@@ -59,7 +59,7 @@ public class CarouselAdapter extends PagerAdapter {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, PracticeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				Intent intent = new Intent(context, GameLoadingActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.putExtra("PracticeCategory", currentCategory);
 				context.startActivity(intent);
 			}
@@ -67,7 +67,7 @@ public class CarouselAdapter extends PagerAdapter {
 
 
 		if(currentCategory.getPrice() != "null" && !currentCategory.getPrice().equals("0.00")){
-			btn.setText("Satın Al " + currentCategory.getPrice());
+			btn.setText("Sat��n Al " + currentCategory.getPrice());
 			btn.setBackgroundResource(R.drawable.roundedpricebutton);
 		}
 		else

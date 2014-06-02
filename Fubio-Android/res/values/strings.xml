@@ -14,7 +14,8 @@
     <string name="title_activity_choose_team">Takım Seç</string>
     <string name="title_activity_practise_categories">Kategori Seç</string>
     <string name="title_activity_practice">Antrenman</string>
-    <string name="practice_carousel_button_text">Başla</string>
+	<string name="practice_carousel_button_text">Başla</string>
     <string name="practice_carousel_price_text">Satın Al</string>
+    <string name="title_activity_game_loading">GameLoadingActivity</string>
 
 </resources>

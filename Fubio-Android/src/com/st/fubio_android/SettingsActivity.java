@@ -11,6 +11,8 @@ public class SettingsActivity extends MainFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_settings);
+		
+		FB_Login facebookLogin = (FB_Login) getSupportFragmentManager().findFragmentById(android.R.id.content);
 	}
 
 
