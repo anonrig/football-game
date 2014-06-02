@@ -67,7 +67,7 @@ public class CarouselAdapter extends PagerAdapter {
 
 
 		if(currentCategory.getPrice() != "null" && !currentCategory.getPrice().equals("0.00")){
-			btn.setText("Sat��n Al " + currentCategory.getPrice());
+			btn.setText("Satın Al " + currentCategory.getPrice());
 			btn.setBackgroundResource(R.drawable.roundedpricebutton);
 		}
 		else
