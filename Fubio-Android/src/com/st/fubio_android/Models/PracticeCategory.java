@@ -9,8 +9,8 @@ public class PracticeCategory implements Serializable{
 	String id, title, description, imageUrl, token, sort, productId, price;
 	boolean isPrivate;
 	Bitmap image;
-	
-	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate) {
+
+	public PracticeCategory(String id, String itemTitle, String itemDescription, String itemImageUrl, String itemToken, String itemSort, boolean isPrivate, String price) {
 		this.id = id;
 		this.title = itemTitle;
 		this.description = itemDescription.replace("\\n", " ");
@@ -19,7 +19,7 @@ public class PracticeCategory implements Serializable{
 		this.sort = itemSort;
 		this.isPrivate = isPrivate;
 		this.productId = null;
-		this.price = null;
+		this.price = price;
 		this.image = null;
 	}
 

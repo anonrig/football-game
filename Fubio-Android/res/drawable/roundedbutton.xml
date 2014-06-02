@@ -5,9 +5,9 @@
     <solid android:color="#218621" />
 
     <corners
-        android:bottomLeftRadius="20dip"
-        android:bottomRightRadius="20dip"
-        android:topLeftRadius="20dip"
-        android:topRightRadius="20dip" />
+        android:bottomLeftRadius="22dip"
+        android:bottomRightRadius="22dip"
+        android:topLeftRadius="22dip"
+        android:topRightRadius="22dip" />
 
 </shape>

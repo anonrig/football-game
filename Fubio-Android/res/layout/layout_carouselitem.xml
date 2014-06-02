@@ -13,8 +13,8 @@
         android:layout_marginBottom="71dp"
         android:background="@drawable/roundedbutton"
         android:minHeight="42dp"
-        android:minWidth="105dp"
-        android:text="Başla"
+        android:minWidth="115dp"
+        android:text="@string/practice_carousel_button_text"
         android:textColor="@color/White"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -26,8 +26,8 @@
         android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        android:maxLines="3"
         android:text="Small Text"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/White" />
 

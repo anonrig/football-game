@@ -64,7 +64,7 @@ public class PractiseCategoriesActivity extends Activity {
 						PracticeCategory pCatObj = new PracticeCategory(currentObject.getString("id"), 
 								currentObject.getString("name"), currentObject.getString("description"),
 								currentObject.getString("image"), currentObject.getString("token"), 
-								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"));
+								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"), currentObject.getString("price"));
 						pCatObj.setImage(ImageFetcher.getInstance().getImage("http://api.fub.io/img/practise/" + pCatObj.getImageUrl()));
 						Categories.add(pCatObj);
 					}
