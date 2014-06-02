@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class MainFragment extends FragmentActivity {
 	ListView lv;
-	final String[] menuItems ={"Hoşgeldin", "Ödüllü Turnuva", "Antrenman", "Arkadaşlarım", "Fubio Shop", "Ayarlar", "Uygulama Hakkında"};
+	final String[] menuItems ={"Üye Ol", "Ödüllü Turnuva", "Antrenman", "Arkadaşlarım", "Fubio Shop", "Ayarlar", "Uygulama Hakkında"};
 	final String[] subMenuItems ={"Futbol bilgini herkese göster.","","","","","",""};
-	int [] prgmImages={R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher};
+	int [] prgmImages={R.drawable.menuiconlogin ,R.drawable.menuicontournament,R.drawable.menuicon1,R.drawable.friendsposition,R.drawable.menuiconstore,R.drawable.settings,R.drawable.menuicon5};
 	
 	SlidingMenu menu;
 	
