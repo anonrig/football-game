@@ -1,8 +1,11 @@
 package com.st.fubio_android;
 
+import com.facebook.Session;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class SettingsActivity extends MainFragment {
 
@@ -11,12 +14,15 @@ public class SettingsActivity extends MainFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_settings);
-		
-		FB_Login facebookLogin = (FB_Login) getSupportFragmentManager().findFragmentById(android.R.id.content);
+
 	}
 
 
 	public void chooseTeam(View v) {
-		startActivity(new Intent(this, ChooseTeamActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+
+		if(!Session.getActiveSession().isOpened())
+			Toast.makeText(getApplicationContext(), "Please login to continue", 3).show();
+		else
+			startActivity(new Intent(this, ChooseTeamActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 	}
 }
