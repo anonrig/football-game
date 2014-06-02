@@ -126,28 +126,38 @@ public class PracticeActivity extends Activity {
 		setAnswers(this.currentQuestion.getChoices());
 		this.currentAnswer = getAnswer();
 		
-		this.timer =  new CountDownTimer(10000, 1000) {
+		this.timer =  new CountDownTimer(10000, 50) {
 
-		     public void onTick(long millisUntilFinished) {
-		         calculateScore((int)millisUntilFinished / 1000);
-		     }
+			public void onTick(long millisUntilFinished) {
+				calculateScore((int)millisUntilFinished / 100);
+				
+				ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
+				progress.setProgress((int)millisUntilFinished / 100);
+			}
 
-		     public void onFinish() {
-		    	 Toast.makeText(PracticeActivity.this, "Time ended!", 3).show();
-		    	 //changeQuestion();
-		     }
-		  }.start();
+			public void onFinish() {
+				Toast.makeText(PracticeActivity.this, "Time ended!", 3).show();
+				lifeLeft--;
+				if (lifeLeft == 0) {
+					Toast.makeText(PracticeActivity.this, "No life left!", 5).show();
+					Intent intent = new Intent(PracticeActivity.this, HighScoreActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.putExtra("score", currentPoint + "");
+					startActivity(intent);
+					onDestroy();
+				} else {
+					currentIndex++;
+					changeQuestion();
+				}
+			}
+		}.start();
 	}
 	
 	public void calculateScore(int second) {
-		this.currentQuestionScore = (second * 5 * 1) + (50 * 1);
+		this.currentQuestionScore = (int)(second * 0.5 * 1) + (50 * 1);
 		this.questionScore = (TextView)findViewById(R.id.worthpoints);
 		this.totalScore = (TextView)findViewById(R.id.currentpoints);
 		
 		this.questionScore.setText(this.currentQuestionScore + "");
 		this.totalScore.setText(this.currentPoint + "");
-		
-		ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
-		progress.setProgress(this.currentQuestionScore);
 	}
 }
