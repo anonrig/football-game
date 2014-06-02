@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.st.fubio_android.PracticeActivity;
 import com.st.fubio_android.R;
 import com.st.fubio_android.R.color;
+import com.st.fubio_android.ServerConnections.ImageLoader;
 import com.st.fubio_android.Models.PracticeCategory;
 
 
@@ -24,12 +25,15 @@ public class CarouselAdapter extends PagerAdapter {
 	private List<PracticeCategory> Categories;
 	private LayoutInflater mInflater;
 	private Context context;
+	private String imageUrl = "http://api.fub.io/img/practise/";
+	ImageLoader imageLoader; 
 
 
 	public CarouselAdapter(Context context, List<PracticeCategory> Categories) {
 		mInflater = LayoutInflater.from(context);
 		this.Categories = Categories;
 		this.context = context;
+		imageLoader = new ImageLoader(context);
 	}
 
 
@@ -73,7 +77,7 @@ public class CarouselAdapter extends PagerAdapter {
 
 		txMain.setText(currentCategory.getTitle());
 		txSub.setText(currentCategory.getDescription());
-		teamImage.setImageBitmap(currentCategory.getImage());
+		imageLoader.DisplayImage(imageUrl+currentCategory.getImageUrl(), teamImage);
 
 		container.addView(pageView);
 		return pageView;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.st.fubio_android.R;
 import com.st.fubio_android.Models.Team;
+import com.st.fubio_android.ServerConnections.ImageLoader;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,12 +18,15 @@ import android.widget.TextView;
 public class ChooseTeamAdapter extends ArrayAdapter<Team> {
 	private final Context context;
     private final ArrayList<Team> itemsArrayList;
-
+    private ImageLoader imageLoader; 
+    private String imageUrl = "http://api.fub.io/img/teams/";
+    
     public ChooseTeamAdapter(Context context, ArrayList<Team> itemsArrayList) {
         super(context, R.layout.layout_chooseteam_item, itemsArrayList);
-
+        imageLoader = new ImageLoader(context);
         this.context = context;
         this.itemsArrayList = itemsArrayList;
+        
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ChooseTeamAdapter extends ArrayAdapter<Team> {
 
         holder.getTitle().setText(currentTeam.getName());
         holder.getTitle().setTextColor(Color.WHITE);
-        holder.getImage().setImageBitmap(currentTeam.getImage());
+        imageLoader.DisplayImage(imageUrl+currentTeam.getImagename(), holder.getImage());
 
         return convertView;
     }

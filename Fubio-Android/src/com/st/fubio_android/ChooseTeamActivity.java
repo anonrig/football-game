@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.st.fubio_android.Models.Team;
-import com.st.fubio_android.ServerConnections.ImageFetcher;
+import com.st.fubio_android.ServerConnections.ImageLoader;
 import com.st.fubio_android.ServerConnections.RequestManager;
 
 import android.app.ProgressDialog;
@@ -53,7 +53,6 @@ public class ChooseTeamActivity extends MainFragment {
 					for(int i = 0; i < jArray.length(); i++) {
 						currentObject = jArray.getJSONObject(i);
 						Team tmp = new Team(currentObject.getString("id"), currentObject.getString("name"), currentObject.getString("imagename"), currentObject.getInt("sort"));
-						tmp.setImage(ImageFetcher.getInstance().getImage("http://api.fub.io/img/teams/" + tmp.getImagename()));
 						teamList.add(tmp);
 					}
 				} catch (Exception e) {

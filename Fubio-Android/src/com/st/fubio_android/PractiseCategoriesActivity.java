@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.st.fubio_android.Adapters.CarouselAdapter;
 import com.st.fubio_android.Models.PracticeCategory;
-import com.st.fubio_android.ServerConnections.ImageFetcher;
+import com.st.fubio_android.ServerConnections.ImageLoader;
 import com.st.fubio_android.ServerConnections.RequestManager;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
@@ -34,12 +34,12 @@ public class PractiseCategoriesActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_practise_categories);
-		
+
 		RequestManager rm = new RequestManager(getApplicationContext());
 		Categories = new ArrayList<PracticeCategory>();
 
 		rm.get("practiseCategories", null, new AsyncHttpResponseHandler() {
-			
+
 			ProgressDialog progress = new ProgressDialog(PractiseCategoriesActivity.this);
 			@Override
 			public void onStart() {
@@ -65,7 +65,7 @@ public class PractiseCategoriesActivity extends Activity {
 								currentObject.getString("name"), currentObject.getString("description"),
 								currentObject.getString("image"), currentObject.getString("token"), 
 								currentObject.getString("sort"), currentObject.getBoolean("isPrivate"), currentObject.getString("price"));
-						pCatObj.setImage(ImageFetcher.getInstance().getImage("http://api.fub.io/img/practise/" + pCatObj.getImageUrl()));
+						
 						Categories.add(pCatObj);
 					}
 				} catch (JSONException e) {
@@ -91,7 +91,7 @@ public class PractiseCategoriesActivity extends Activity {
 					ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 					mViewPager.setAdapter(new CarouselAdapter(getApplicationContext(), Categories));
 					mViewPager.setCurrentItem(0);
-					
+
 					PageIndicator mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
 					mIndicator.setViewPager(mViewPager);
 				} catch(Exception ex){
@@ -108,8 +108,8 @@ public class PractiseCategoriesActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-	
+
+
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		finish();
