@@ -61,6 +61,10 @@
             android:name="com.st.fubio_android.GameLoadingActivity"
             android:label="@string/title_activity_game_loading" >
         </activity>
+        <activity
+            android:name="com.st.fubio_android.HighScoreActivity"
+            android:label="@string/title_activity_high_score" >
+        </activity>
     </application>
 
 </manifest>

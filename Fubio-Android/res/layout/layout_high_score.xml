@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.st.fubio_android.HighScoreActivity"
+    tools:ignore="MergeRootFrame" 
+    android:background="@drawable/bg" >
+
+    <TextView
+        android:id="@+id/userscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textColor="@color/White"
+        android:textSize="80sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userscore"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="42dp"
+        android:gravity="center"
+        android:text="Game is finished. Your score:"
+        android:textColor="@color/White"
+        android:textSize="20sp" />
+    
+</RelativeLayout>
