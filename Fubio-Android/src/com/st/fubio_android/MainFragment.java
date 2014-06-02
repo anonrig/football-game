@@ -69,7 +69,7 @@ public class MainFragment extends FragmentActivity {
 			startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)); // Flags prevent duplicate activities and reorders the position of view to the front.
 			menu.toggle();
 		}
-		else if(caseText.equals("Antrenman") && Session.getActiveSession() != null){
+		else if(caseText.equals("Antrenman") && Session.getActiveSession().isOpened()){
 			startActivity(new Intent(this, PractiseCategoriesActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			menu.toggle();
 		}
